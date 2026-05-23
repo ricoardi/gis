@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Pengumpulan Tugas</title>
+    <title>Portal Pengumpulan UAS GIS II</title>
+    
+    <!-- Import Font Modern dari Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Import FontAwesome untuk Ikon Profesional -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Import Font Modern dari Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+        }
 
         * {
             margin: 0;
@@ -16,8 +30,8 @@
         }
 
         body {
-            background-color: #f4f7f6;
-            color: #333;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            color: var(--text-dark);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -26,82 +40,210 @@
         }
 
         .container {
-            background: #ffffff;
-            max-width: 800px;
+            background: var(--card-bg);
+            max-width: 900px;
             width: 100%;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Aksen garis di atas container */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+        }
+
+        header {
             text-align: center;
-        }
-
-        header h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            color: #7f8c8d;
-            font-size: 1rem;
             margin-bottom: 40px;
         }
 
-        .task-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+        header h1 {
+            color: var(--text-dark);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
         }
 
-        /* Styling untuk Kartu Tugas */
+        /* Styling Informasi Mahasiswa */
+        .student-info {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 25px;
+            min-width: 300px;
+            text-align: left;
+        }
+
+        .student-info p {
+            font-size: 1rem;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed #cbd5e1;
+            padding-bottom: 5px;
+        }
+
+        .student-info p:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .student-info span {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Tombol Google Drive */
+        .btn-drive {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-drive:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .instruction {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-top: 30px;
+        }
+
+        /* Grid Kartu Tugas */
+        .task-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
         .task-card {
             background: #ffffff;
-            border: 2px solid #eef2f5;
-            border-radius: 12px;
-            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px 25px;
             text-decoration: none;
             color: inherit;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
         }
 
         .task-card:hover {
-            transform: translateY(-5px);
-            border-color: #3498db;
-            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.15);
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.1);
         }
 
-        .icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            color: #3498db;
+        .task-card::after {
+            content: '\f061'; /* FontAwesome Arrow Right */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 25px;
+            bottom: 30px;
+            color: var(--primary-color);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .task-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .icon-wrapper {
+            background: #eff6ff;
+            color: var(--primary-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .task-card:hover .icon-wrapper {
+            background: var(--primary-color);
+            color: white;
         }
 
         .task-title {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 5px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
         }
 
-        .task-file {
+        .task-desc {
             font-size: 0.9rem;
-            color: #95a5a6;
-            background: #f4f7f6;
-            padding: 4px 10px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Label Status/Tipe File */
+        .badge {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 12px;
             border-radius: 20px;
-            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* Responsive Design */
         @media (max-width: 600px) {
-            header h1 {
-                font-size: 2rem;
-            }
             .container {
-                padding: 20px;
+                padding: 30px 20px;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .student-info {
+                width: 100%;
+                min-width: auto;
+            }
+            .task-card::after {
+                display: none; /* Sembunyikan panah di mobile agar rapi */
             }
         }
     </style>
@@ -111,26 +253,44 @@
     <div class="container">
         <header>
             <h1>Portal Pengumpulan UAS GIS II</h1>
-            <h3>Nama : Rico Ardi Saputra</h3>
-            <h3>NIM  : 202421021P</h3>
-            <h3><a href="https://drive.google.com/drive/folders/1qZxdkyRvIGqiGiuyjkjvIeJuH5L8iiNe?usp=sharing">Link Google Drive</a></h3>
-            <br>
-            <p>Silakan klik pada salah satu pilihan di bawah ini untuk mengakses file tugas.</p>
+            
+            <div class="student-info">
+                <p>Nama Lengkap <span>: Rico Ardi Saputra</span></p>
+                <p>Nomor Induk Mahasiswa <span>: 202421021P</span></p>
+            </div>
+            
+            <div>
+                <a href="https://drive.google.com/drive/folders/1qZxdkyRvIGqiGiuyjkjvIeJuH5L8iiNe?usp=sharing" target="_blank" class="btn-drive">
+                    <i class="fab fa-google-drive"></i> Buka Folder Google Drive
+                </a>
+            </div>
+
+            <p class="instruction">Silakan klik pada salah satu pilihan di bawah ini untuk mengakses web map (QGIS).</p>
         </header>
 
         <div class="task-grid">
             <!-- Tautan ke Tugas 1 -->
             <a href="qgis2web_2026_05_24-00_25_11_397144" class="task-card">
-                <div class="icon">📁</div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                </div>
                 <div class="task-title">Tugas 1 (Koperasi Merah Putih)</div>
-                <div class="task-file">Titik Lokasi Gerai Koperasi Merah Putih Kota Prabumulih pada <br> Prabumulih Barat, Prabumulih Timur dan Prabumulih Selatan</div>
+                <div class="task-desc">
+                    Pemetaan titik lokasi gerai Koperasi Merah Putih di area Prabumulih Barat, Prabumulih Timur, dan Prabumulih Selatan.
+                </div>
+                <span class="badge">QGIS Web Map</span>
             </a>
 
             <!-- Tautan ke Tugas 2 -->
-            <a href="qgis2web_2026_05_22-08_32_31_424961/" class="task-card">
-                <div class="icon">📄</div>
+            <a href="qgis2web_2026_05_22-08_32_31_424961" class="task-card">
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
                 <div class="task-title">Tugas 2 (Clip Mask)</div>
-                <div class="task-file">Clip Mask dengan Poligon dengan rute Air Mancur -> CityMall -> RSUD -> Tugu Jogja</div>
+                <div class="task-desc">
+                    Implementasi Clip Mask menggunakan poligon dengan rute: Air Mancur → CityMall → RSUD → Tugu Jogja.
+                </div>
+                <span class="badge">QGIS Web Map</span>
             </a>
         </div>
     </div>
