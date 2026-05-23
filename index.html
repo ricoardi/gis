@@ -74,40 +74,52 @@
             letter-spacing: -0.5px;
         }
 
-        /* Styling Informasi Mahasiswa */
+       /* Styling Informasi Mahasiswa */
         .student-info {
             background: #f8fafc;
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
-            display: inline-flex;
-            flex-direction: column;
-            gap: 8px;
             margin-bottom: 25px;
-            min-width: 300px;
+            min-width: 320px;
+            display: inline-block;
             text-align: left;
         }
 
-        .student-info p {
-            font-size: 1rem;
-            color: var(--text-dark);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px dashed #cbd5e1;
-            padding-bottom: 5px;
+        .student-info table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .student-info p:last-child {
+        .student-info td {
+            font-size: 1rem;
+            color: var(--text-dark);
+            border-bottom: 1px dashed #cbd5e1;
+            padding: 8px 0;
+        }
+
+        /* Hilangkan garis putus-putus di baris terakhir */
+        .student-info tr:last-child td {
             border-bottom: none;
             padding-bottom: 0;
         }
 
-        .student-info span {
+        .student-info .info-label {
+            width: 60px; /* Mengatur lebar kolom Nama/NIM */
+            white-space: nowrap;
+        }
+
+        .student-info .info-colon {
+            width: 20px;
+            text-align: center; /* Membuat titik dua berada di tengah */
             font-weight: 600;
             color: var(--primary-color);
         }
 
+        .student-info .info-value {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
         /* Tombol Google Drive */
         .btn-drive {
             display: inline-flex;
@@ -255,8 +267,18 @@
             <h1>Portal Pengumpulan UAS GIS II</h1>
             
             <div class="student-info">
-                <p>Nama <span>: Rico Ardi Saputra</span></p>
-                <p>NIM  <span>: 202421021P</span></p>
+                <table>
+                    <tr>
+                        <td class="info-label">Nama</td>
+                        <td class="info-colon">:</td>
+                        <td class="info-value">Rico Ardi Saputra</td>
+                    </tr>
+                    <tr>
+                        <td class="info-label">NIM</td>
+                        <td class="info-colon">:</td>
+                        <td class="info-value">202421021P</td>
+                    </tr>
+                </table>
             </div>
             
             <div>
